@@ -5,9 +5,12 @@
 ;; Debug adapter for:
 ;; https://github.com/grahambates/uae-dap
 
-;; TODO: automatic download of debug adapter.
-;;       looks like dap-utils--get-extension is a way to download. Any npm ways?
-;;       just use lsp-dependency for this as well? and package lsp-package-ensure in the setup function? 
+;; super simple setup function
+(defun dap-uae-setup ()
+  (interactive)
+  (if (executable-find "npm")
+      (shell-command "npm install -g uae-dap")
+    (error "npm not found")))
 
 (defcustom dap-uae-fs-uae-path (executable-find "fs-uae")
   "Path to FS UAE executable. Should be a patch version that supports debugging. https://github.com/prb28/vscode-amiga-assembly-binaries"
@@ -20,6 +23,7 @@
   (-> conf
       (dap--put-if-absent :type "asm68k"
                           :request launch
+                          :dap-server-path "dap-uae"
                           :program (expand-file-name (read-file-name "Select executable file to debug"))
                           :cwd (lsp-workspace-root)
                           :stopOnEntry :json-false
