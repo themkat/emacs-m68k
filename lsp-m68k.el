@@ -1,3 +1,8 @@
+
+;; Package-Requires: ((emacs "25.1") (lsp-mode "8.0.0") (tree-sitter "0.12.0"))
+
+;; TODO: maybe separate the different concerns from this file into their own files?
+
 ;; lsp mode configuration for
 ;; https://github.com/grahambates/m68k-lsp
 
