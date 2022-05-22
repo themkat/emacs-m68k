@@ -1,0 +1,26 @@
+name: Build package
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - uses: purcell/setup-emacs@v3.0
+        with:
+          version: 27.2
+      - name: Setup Melpazoid
+        run: |
+          git clone https://github.com/riscy/melpazoid.git ~/melpazoid
+          pip install ~/melpazoid
+      - name: Scan, byte-compile and sanity check package
+        env:
+          LOCAL_REPO: ${{ github.workspace }}
+          RECIPE: (m68k-mode :repo "themkat/emacs-m68k" :fetcher github)
+          EXIST_OK: false
+        run: |
+          make -C ~/melpazoid 
