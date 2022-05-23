@@ -1,4 +1,9 @@
+;;; lsp-m68k.el --- lsp-mode configuration for m68k assembly
 
+;;; Commentary:
+;; Various utilities for programming M68k assembly. This includes lsp, debugging and more.
+
+;;; Code:
 
 
 ;; TODO: maybe separate the different concerns from this file into their own files?
@@ -39,3 +44,6 @@
   :server-id 'm68k-ls
   :download-server-fn (lambda (_client callback error-callback _update?)
                         (lsp-package-ensure 'm68k-lsp-server callback error-callback))))
+
+(provide 'lsp-m68k)
+;;; lsp-m68k.el ends here

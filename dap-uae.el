@@ -1,9 +1,14 @@
+;;; dap-uae.el --- dap-mode config for m68k assembly using uae-dap
+
+;;; Commentary:
+;; Debug adapter for:
+;; https://github.com/grahambates/uae-dap
+
+;;; Code:
+
 (require 'dap-mode)
 (require 'dash)
 (require 'f)
-
-;; Debug adapter for:
-;; https://github.com/grahambates/uae-dap
 
 ;; super simple setup function
 (defun dap-uae-setup ()
@@ -21,19 +26,19 @@
 ;; some sane-ish defaults
 (defun dap-uae-configure-parameters (conf)
   (-> conf
-      (dap--put-if-absent :type "asm68k"
-                          :request launch
-                          :dap-server-path "dap-uae"
-                          :program (expand-file-name (read-file-name "Select executable file to debug"))
-                          :cwd (lsp-workspace-root)
-                          :stopOnEntry :json-false
-                          :serverName "localhost"
-                          :serverPort "6860"
-                          :trace :json-false
-                          :startEmulator t
-                          :emulator dap-uae-fs-uae-path 
-                          :emulatorWorkingDir (f-dirname dap-uae-fs-uae-path)
-                          :emulatorOptions ["--hard_drive_0=uae/dh0"
+      (dap--put-if-absent :type "asm68k")
+      (dap--put-if-absent :request "launch")
+      (dap--put-if-absent :dap-server-path "dap-uae")
+      (dap--put-if-absent :program (expand-file-name (read-file-name "Select executable file to debug")))
+      (dap--put-if-absent :cwd (lsp-workspace-root))
+      (dap--put-if-absent :stopOnEntry :json-false)
+      (dap--put-if-absent :serverName "localhost")
+      (dap--put-if-absent :serverPort "6860")
+      (dap--put-if-absent :trace :json-false)
+      (dap--put-if-absent :startEmulator t)
+      (dap--put-if-absent :emulator dap-uae-fs-uae-path)
+      (dap--put-if-absent :emulatorWorkingDir (f-dirname dap-uae-fs-uae-path))
+      (dap--put-if-absent :emulatorOptions ["--hard_drive_0=uae/dh0"
                                             "--remote_debugger=200"
                                             "--use_remote_debugger=true"
                                             "--automatic_input_grab=0"])))
@@ -41,3 +46,6 @@
 (dap-register-debug-provider "asm68k" #'dap-uae-configure-parameters)
 
 ;; TODO: a template with basic settings? maybe where we can select the program file?
+
+(provide 'dap-uae)
+;;; dap-uae.el ends here
