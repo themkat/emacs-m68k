@@ -13,6 +13,9 @@
 
 (require 'lsp-mode)
 
+;; defined in m68k-mode
+(defvar m68k-mode-hook nil)
+
 (add-to-list 'm68k-mode-hook #'lsp)
 (add-to-list 'lsp-language-id-configuration '(m68k-mode . "m68k"))
 
@@ -22,7 +25,7 @@
  '(:npm :package "m68k-lsp-server"
         :path "m68k-lsp-server"))
 
-;; TODO: how many of the configuration options should we add? All? 
+;; TODO: how many of the configuration options should we add
 (defcustom m68k-processor-types ["mc68000"]
   "Types of processors we are targeting (e.g, mc68000, mc68020, mc68881 etc.). Set to get fitting completion candidates, documentation etc."
   :group 'm68k
