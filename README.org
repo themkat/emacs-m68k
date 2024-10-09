@@ -1,0 +1,50 @@
+* M68K Mode for Emacs
+Motorola 68k Assembly environment for Emacs. Focusing on Amiga in the beginning with lsp-server and debugger. Might extend to support other platforms based upon interest Includes setup for lsp-mode, and experimental dap-mode.
+
+
+** Installation
+Only manual is supported at the moment. You can help get this ready for something like MELPA by contributing :slightly_smiling_face:
+
+*** Manual
+Clone this repo and add it to your load-path, like so:
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "/path/to/repo")
+  (require 'm68k-mode)
+#+END_SRC
+
+Note that =m68k-mode= depends on [[https://github.com/emacs-lsp/lsp-mode/][lsp-mode]]!
+
+** Usage
+You can simply activate =m68k-mode= for any buffers where you have a M68K assembly code. [[https://github.com/grahambates/m68k-lsp][Language server]] will be started automatically, and you will be prompted for installation if you have not installed it manually already.
+
+#+BEGIN_QUOTE
+[!TIP]
+You can update your language server with M-x lsp-update-server
+#+END_QUOTE
+
+You can now use all supported LSP functionality for the server. Check [[https://github.com/grahambates/m68k-lsp][the server repo]] for more information on supported features. Most language server features should work right out of the box. Some examples:
+- =lsp-format-buffer= for formatting
+- lsp ui documentation popups on mouse hover and =lsp-ui-doc-show= / =lsp-ui-doc-hide=
+- eldoc (i.e, minibuffer area) signature documentation for instructions/mnemonics.
+  
+
+*** Experimental debugger
+The debugger is not enabled by default.
+
+TODO: writeup and current status
+
+
+** Configuration
+- =m68k-format-case=: The case the formatter will format instructions and registers to. "lower", "upper" or "any".
+- =m68k-processor-types=: A vector of processing types that should be used. Used to give correct completion and documentation based upon which processor. Example values: =["mc68000"]= (default) for plain 68k processor, =["mc68020", "mc68881"]= for a 68020 with a floating point processor etc.
+- =m68k-include-paths=: Vector of include paths. Has the same effect as INCDIR in code. Example: =["/path/to/my/awesome/includes.i"]=. 
+
+
+** Contributing
+All contributions welcome! Be kind, respectful, and constructive, and we will probably work good together :)
+
+Steps:
+1. Fork this repo
+2. Create branch with a fitting name for what you want to work with. example:  feature/tree-sitter-support, bugfix/
+3. PR it with a descriptive title. Something like "Implemented tree-sitter syntax highlighting"
+4. Discussion in comment, possible suggestions, and eventual merging if everything look good :)
