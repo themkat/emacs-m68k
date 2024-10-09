@@ -1,15 +1,11 @@
 ;;; lsp-m68k.el --- lsp-mode configuration for m68k assembly
 
 ;;; Commentary:
-;; Various utilities for programming M68k assembly. This includes lsp, debugging and more.
-
-;;; Code:
-
-
-;; TODO: maybe separate the different concerns from this file into their own files?
-
 ;; lsp mode configuration for
 ;; https://github.com/grahambates/m68k-lsp
+;; uses the basic m68k setup 
+
+;;; Code:
 
 (require 'lsp-mode)
 
