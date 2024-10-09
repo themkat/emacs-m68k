@@ -38,7 +38,9 @@
 
 (lsp-register-client
  (make-lsp-client
-  :new-connection (lsp-stdio-connection (lambda () (list "m68k-lsp-server" "--stdio")))
+  :new-connection (lsp-stdio-connection (lambda () (list (or (executable-find "m68k-lsp-server")
+                                                        (lsp-package-path 'm68k-lsp-server))
+                                                    "--stdio")))
   :priority -1
   :activation-fn (lsp-activate-on "m68k")
   :initialized-fn (lambda (workspace)
