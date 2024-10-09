@@ -20,6 +20,11 @@
   :group 'm68k
   :type 'vector)
 
+(defcustom m68k-include-paths []
+  "Include paths to include in your session. Equivalent to INCDIR in the source code."
+  :type '(repeat string)
+  :group 'm68k)
+
 (defcustom m68k-format-case "lower"
   "What casing to use for instructions and registers when formatting."
   :type '(choice (const "lower")
@@ -31,7 +36,8 @@
 
 (lsp-register-custom-settings
  '(("m68k.format.case" m68k-format-case)
-   ("m68k.processors" m68k-processor-types)))
+   ("m68k.processors" m68k-processor-types)
+   ("m68.includePaths" m68-include-paths)))
 
 (lsp-dependency
  'm68k-lsp-server
