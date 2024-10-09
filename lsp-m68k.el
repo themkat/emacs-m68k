@@ -20,8 +20,17 @@
   :group 'm68k
   :type 'vector)
 
+(defcustom m68k-format-case "lower"
+  "What casing to use for instructions and registers when formatting."
+  :type '(choice (const "lower")
+                 (const "upper")
+                 (const "any"))
+  :group 'm68k)
+
+;; TODO: alignment settings for formatter
+
 (lsp-register-custom-settings
- '(("m68k.format.case" "lower")
+ '(("m68k.format.case" m68k-format-case)
    ("m68k.processors" m68k-processor-types)))
 
 (lsp-dependency
