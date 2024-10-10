@@ -36,9 +36,27 @@ You can now use all supported LSP functionality for the server. Check [[https://
   
 
 *** Experimental debugger
-The debugger is not enabled by default.
+The debugger is not enabled by default. To enable it, follow the installation instructions above, and add:
+#+BEGIN_SRC emacs-lisp
+  (require 'dap-uae)
+#+END_SRC
 
-TODO: writeup and current status
+When it has been tested a bit more, it might be enabled by default as well. To debug, you will need to install the debug adapter and tooling. Make sure you have NPM installed, and run =M-x m68k-dap-uae-setup=. Emulators, like FS-UAE v4, is included in the tooling install. There might be some minor setup like putting Kickstart files in the correct directories if you have never used it before. 
+
+
+Usage is like normal for [[https://github.com/emacs-lsp/dap-mode][dap-mode]] in Emacs: Simply run =dap-debug= and you are debugging! There is an included debug template where you are queried for the program to debug. This one is called =Amiga ASM debug=. Looking at it can provide some inspiration for your own config:
+#+BEGIN_SRC emacs-lisp
+  (dap-register-debug-template
+   "Amiga ASM debug"
+   (list :type "asm68k"
+         :request "launch"))
+#+END_SRC
+
+If you want the program to be debugged to be coded in, just add =:program /path/to/compiled/exe= to a debug template. You can also use =.vscode/launch.json= configuration for the debugging, but not for a compilation task list. Make sure the debug configuration has the type =asm68k= for dap-mode to recognize it. 
+
+
+If you want to compile before debugging, check the configuration section below.
+
 
 
 ** Configuration
@@ -46,6 +64,9 @@ TODO: writeup and current status
 - =m68k-processor-types=: A vector of processing types that should be used. Used to give correct completion and documentation based upon which processor. Example values: =["mc68000"]= (default) for plain 68k processor, =["mc68020", "mc68881"]= for a 68020 with a floating point processor etc.
 - =m68k-include-paths=: Vector of include paths. Has the same effect as INCDIR in code. Example: =["/path/to/my/awesome/includes.i"]=. 
 
+
+The debugger has the option to run compilation before debugging. To do so, set:
+- =m68k-compile-command= to the command used to compile. Examples: =make build=, =./compile.sh= or similar. If the build fails, meaning the exit code is not 0, then the debugging will not start. If set to =nil=, no compilation will happen, and it will be your responsibility to do it manually before debugging.
 
 ** Contributing
 All contributions welcome! Be kind, respectful, and constructive, and we will probably work good together :)
