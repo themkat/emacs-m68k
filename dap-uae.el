@@ -28,13 +28,13 @@ Pro-tip: Use a .dir-locals setting for this per project if unique."
   :group 'dap-uae)
 
 (defun m68k-dap-uae-configure-parameters (conf)
+  (when m68k-compile-command
+    (dap--put-if-absent conf :dap-compilation m68k-compile-command))
   (-> conf
       (dap--put-if-absent :name "Amiga ASM")
       (dap--put-if-absent :type "asm68k")
       (dap--put-if-absent :request "launch")
       (dap--put-if-absent :dap-server-path (list "uae-dap"))
-      ;; (when m68k-compile-command
-      ;;   (dap--put-if-absent :dap-compilation m68k-compile-command))
       (dap--put-if-absent :program (read-file-name "Select executable file to debug"))
       (dap--put-if-absent :cwd (lsp-workspace-root))
       (dap--put-if-absent :serverName "localhost")
