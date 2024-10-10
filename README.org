@@ -2,6 +2,13 @@
 Motorola 68k Assembly environment for Emacs. Focusing on Amiga in the beginning with lsp-server and debugger. Might extend to support other platforms based upon interest Includes setup for lsp-mode, and experimental dap-mode.
 
 
+Example screenshot using my [[https://github.com/themkat/pink-bliss-uwu][pink-bliss-uwu theme]] and [[https://github.com/sebastiencs/company-box][company-box]] to get documentation during completion: 
+#+ATTR_ORG: :width 800
+[[./screenshot.png]]
+(will probably look slightly different, and maybe more pleasant to you with another theme. If we wanted something standard, we would NOT be using Emacs but some cookie cutter IDE nonsense)
+
+
+
 ** Installation
 Only manual is supported at the moment. You can help get this ready for something like MELPA by contributing :slightly_smiling_face:
 
