@@ -51,6 +51,13 @@ Pro-tip: Use a .dir-locals setting for this per project if unique."
 
 (dap-register-debug-provider "asm68k" #'m68k-dap-uae-configure-parameters)
 
+;; Disable some fields with no data like Locals when debugging.
+;; defined in m68k-mode
+(defvar m68k-mode-hook nil)
+(add-to-list 'm68k-mode-hook #'(lambda ()
+                                 ;; TODO: maybe make it configurable and less opinionated
+                                 (setq-local dap-auto-configure-features '(breakpoints locals controls tooltip))))
+
 ;; Basic debug template
 (dap-register-debug-template
  "Amiga ASM debug"
