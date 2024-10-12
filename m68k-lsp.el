@@ -1,4 +1,4 @@
-;;; lsp-m68k.el --- lsp-mode configuration for m68k assembly
+;;; m68k-lsp.el --- lsp-mode configuration for m68k assembly
 
 ;;; Commentary:
 ;; lsp mode configuration for
@@ -17,20 +17,20 @@
 
 (defcustom m68k-processor-types ["mc68000"]
   "Types of processors we are targeting (e.g, mc68000, mc68020, mc68881 etc.). Set to get fitting completion candidates, documentation etc."
-  :group 'm68k
+  :group 'm68k-lsp
   :type 'vector)
 
 (defcustom m68k-include-paths []
   "Include paths to include in your session. Equivalent to INCDIR in the source code."
   :type '(repeat string)
-  :group 'm68k)
+  :group 'm68k-lsp)
 
 (defcustom m68k-format-case "lower"
   "What casing to use for instructions and registers when formatting."
   :type '(choice (const "lower")
                  (const "upper")
                  (const "any"))
-  :group 'm68k)
+  :group 'm68k-lsp)
 
 ;; TODO: alignment settings for formatter
 
@@ -59,5 +59,5 @@
   :download-server-fn (lambda (_client callback error-callback _update?)
                         (lsp-package-ensure 'm68k-lsp-server callback error-callback))))
 
-(provide 'lsp-m68k)
-;;; lsp-m68k.el ends here
+(provide 'm68k-lsp)
+;;; m68k-lsp.el ends here

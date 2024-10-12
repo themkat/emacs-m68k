@@ -36,7 +36,7 @@
 (add-to-list 'm68k-mode-hook #'m68k-setup-tree-sitter)
 
 
-(require 'lsp-m68k)
+(require 'm68k-lsp)
 ;;(require 'dap-m68k)
 
 (provide 'm68k-mode)

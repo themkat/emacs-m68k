@@ -38,7 +38,7 @@ You can now use all supported LSP functionality for the server. Check [[https://
 *** Experimental debugger
 The debugger is not enabled by default. To enable it, follow the installation instructions above, and add:
 #+BEGIN_SRC emacs-lisp
-  (require 'dap-uae)
+  (require 'm68k-dap)
 #+END_SRC
 
 When it has been tested a bit more, it might be enabled by default as well. To debug, you will need to install the debug adapter and tooling. Make sure you have NPM installed, and run =M-x m68k-dap-uae-setup=. Emulators, like FS-UAE v4, is included in the tooling install. There might be some minor setup like putting Kickstart files in the correct directories if you have never used it before. 

@@ -1,4 +1,4 @@
-;;; dap-uae.el --- dap-mode config for m68k assembly using uae-dap
+;;; m68k-dap.el --- dap-mode config for m68k assembly using uae-dap
 
 ;;; Commentary:
 ;; Debug adapter for:
@@ -18,14 +18,14 @@
 ;; TODO: reinstroduce some configurability on executable
 ;; (defcustom m68k-dap-uae-fs-uae-path (executable-find "fs-uae")
 ;;   "Path to FS UAE executable. Should be a patch version that supports debugging. https://github.com/prb28/vscode-amiga-assembly-binaries"
-;;   :group 'dap-uae
+;;   :group 'm68k-dap
 ;;   :type 'string)
 
 (defcustom m68k-compile-command nil
   "Command used to compile project before debugging. If nil, you would be responsible for compilation yourself.
 Pro-tip: Use a .dir-locals setting for this per project if unique."
   :type 'string
-  :group 'dap-uae)
+  :group 'm68k-dap)
 
 (defun m68k-dap-uae-configure-parameters (conf)
   (when m68k-compile-command
@@ -64,5 +64,5 @@ Pro-tip: Use a .dir-locals setting for this per project if unique."
  (list :type "asm68k"
        :request "launch"))
 
-(provide 'dap-uae)
-;;; dap-uae.el ends here
+(provide 'm68k-dap)
+;;; m68k-dap.el ends here
