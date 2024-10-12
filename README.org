@@ -71,7 +71,11 @@ The debugger has the option to run compilation before debugging. To do so, set:
 ** Contributing
 All contributions welcome! Be kind, respectful, and constructive, and we will probably work good together :)
 
-Steps:
+
+Feel free to report any issues you might have, and also feature requests. If we can make this a good package that create awesome M68K tooling for Emacs, then that would be awesome :slightly_smiling_face:
+
+
+Steps for contributing code:
 1. Fork this repo
 2. Create branch with a fitting name for what you want to work with. example:  feature/tree-sitter-support, bugfix/
 3. PR it with a descriptive title. Something like "Implemented tree-sitter syntax highlighting"
