@@ -3,7 +3,7 @@ Motorola 68k Assembly environment for Emacs. Focusing on Amiga in the beginning 
 
 
 Example screenshot using my [[https://github.com/themkat/pink-bliss-uwu][pink-bliss-uwu theme]] and [[https://github.com/sebastiencs/company-box][company-box]] to get documentation during completion: 
-#+ATTR_ORG: :width 800
+#+ATTR_ORG: :width 600
 [[./screenshot.png]]
 (will probably look slightly different, and maybe more pleasant to you with another theme. If we wanted something standard, we would NOT be using Emacs but some cookie cutter IDE nonsense)
 
@@ -34,6 +34,20 @@ You can now use all supported LSP functionality for the server. Check [[https://
 - lsp ui documentation popups on mouse hover and =lsp-ui-doc-show= / =lsp-ui-doc-hide=
 - eldoc (i.e, minibuffer area) signature documentation for instructions/mnemonics.
   
+
+*** Cycle Counter
+There is an additional cycle counter you can opt in to using. Make sure you have NPM, and more specifically the NPX tool available (should be in all newer versions of NPM). Then in your config:
+#+BEGIN_SRC emacs-lisp
+  (require 'm68k-cycle-counter)
+#+END_SRC
+
+
+To get cycle counts as an overlay in your buffer, run =M-x m68k-cycle-counter-mode=. At the moment, the cycle counter does not run periodically, but this is planned. Just deactivate it, and activate it again to get new counts. (activation and deactivations are both the same command). Your buffer will then look similar to the following (or the theme might be different):
+
+#+ATTR_ORG: :width 600
+[[./screenshot_circlecounter.png]]
+(I have disable truncation of lines to make it look prettier in this example. This is the same example code as above, and is taken from [[https://github.com/grahambates/vscode-amiga-wks-example][grahambates/vscode-amiga-wks-example]]
+
 
 *** Experimental debugger
 The debugger is not enabled by default. To enable it, follow the installation instructions above, and add:
