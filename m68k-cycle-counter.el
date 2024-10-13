@@ -32,13 +32,15 @@
   "Face used in m68k cycle counter overlays"
   :group 'm68k-cycle-counter)
 
-
-;;(defvar m68k-cycle-counter-overlays nil)
+(defvar m68k-cycle-counter-overlays nil)
 (defvar m68k-cycle-counter-timer nil)
 
-;; TODO: maybe book-keep overlays instead so we don't delete any other modes' overlays?
 (defun m68k-cycle-counter-clear-overlays ()
-  (delete-all-overlays (current-buffer)))
+  "Delete only m68k-cycle-counter overlays, not all overlays in buffer."
+  (-each m68k-cycle-counter-overlays
+    (lambda (ov)
+      (delete-overlay ov)))
+  (setq m68k-cycle-counter-overlays '()))
 
 ;; TODO: propertize based upon the number of cycles. Maybe an error face or similar could be set for very high cycle counts?
 (defun m68k-cycle-counter--propertize-text (text cycles)
@@ -69,6 +71,8 @@
     ;; delete the old overlays before drawing new ones
     (m68k-cycle-counter-clear-overlays)
 
+    (setq-local m68k-cycle-counter-overlays '())
+    
     (save-excursion
       (goto-line 1)
       (-each counter-info
@@ -85,7 +89,8 @@
               (-if-let ((size)
                         entry)
                   (overlay-put overlay 'before-string (m68k-cycle-counter--propertize-text (format "Size: %2s" size) 0))
-                (overlay-put overlay 'before-string (string-pad "" m68k-cycle-counter-overlay-max-length)))))
+                (overlay-put overlay 'before-string (string-pad "" m68k-cycle-counter-overlay-max-length))))
+            (push overlay m68k-cycle-counter-overlays))
 
           (forward-line 1))))
     
