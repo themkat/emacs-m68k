@@ -65,8 +65,7 @@
                                        (matches-single-num
                                         (list (cadr matches-single-num)))
                                        (t
-                                        nil))
-                                 ))
+                                        nil))))
                              (s-lines data))))
     ;; delete the old overlays before drawing new ones
     (m68k-cycle-counter-clear-overlays)
