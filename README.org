@@ -50,6 +50,12 @@ To get cycle counts as an overlay in your buffer, run =M-x m68k-cycle-counter-mo
 
 
 *** Experimental debugger
+#+BEGIN_QUOTE
+[!IMPORTANT]
+
+Make sure you are using the patched FS UAE or WinUAE binaries instead of the default ones! They are needed to get the debugger to connect. This is documented in the [[https://github.com/grahambates/uae-dap][uae-dap]] readme. If you use the setup function below without any overrides, then the patched version is the deafault setting.
+#+END_QUOTE
+
 The debugger is not enabled by default. To enable it, follow the installation instructions above, and add:
 #+BEGIN_SRC emacs-lisp
   (require 'm68k-dap)
