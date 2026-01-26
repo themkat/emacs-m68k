@@ -53,7 +53,7 @@ To get cycle counts as an overlay in your buffer, run =M-x m68k-cycle-counter-mo
 #+BEGIN_QUOTE
 [!IMPORTANT]
 
-Make sure you are using the patched FS UAE or WinUAE binaries instead of the default ones! They are needed to get the debugger to connect. This is documented in the [[https://github.com/grahambates/uae-dap][uae-dap]] readme. If you use the setup function below without any overrides, then the patched version is the default setting.
+Make sure you are using the patched FS UAE or WinUAE binaries instead of the default ones! They are needed to get the debugger to connect. This is documented in the [[https://github.com/grahambates/uae-dap][uae-dap]] readme. If you use the setup function below without any overrides, then the patched version is the default setting. You should also copy your kickstarts and other settings into the FS UAE kickstarts directory (or relevant WinUAE directories if you use Windows). This directory is usually found in your home directory.
 #+END_QUOTE
 
 The debugger is not enabled by default. To enable it, follow the installation instructions above, and add:
@@ -79,6 +79,10 @@ If you want to compile before debugging, check the configuration section below.
 
 
 
+**** Issues starting debugger/Timeout etc.
+While uae-dap has some defaults for program discovery built in (i.e, =remoteProgram= set to =SYS:programname=), there seems like some users are experiencing issues. These issues typically manifest themselves as FS UAE being stuck at a AmigaDOS shell like when failing to boot the current disk. At the Emacs side, you  usually experience this as a timeout error. There is a simple workaround to fix it. Create a `s` directory in the same directory as your program, and put a =startup-sequence=
+ file inside it. This file can contain a single command: =SYS:programname= (where =programname= is the same name as your executable).
+ 
 ** Configuration
 - =m68k-format-case=: The case the formatter will format instructions and registers to. "lower", "upper" or "any".
 - =m68k-processor-types=: A vector of processing types that should be used. Used to give correct completion and documentation based upon which processor. Example values: =["mc68000"]= (default) for plain 68k processor, =["mc68020", "mc68881"]= for a 68020 with a floating point processor etc.
