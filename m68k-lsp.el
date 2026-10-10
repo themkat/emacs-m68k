@@ -37,7 +37,7 @@
 (lsp-register-custom-settings
  '(("m68k.format.case" m68k-format-case)
    ("m68k.processors" m68k-processor-types)
-   ("m68.includePaths" m68-include-paths)))
+   ("m68k.includePaths" m68-include-paths)))
 
 (lsp-dependency
  'm68k-lsp-server
